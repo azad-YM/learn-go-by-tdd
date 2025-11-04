@@ -10,29 +10,23 @@ func Test_perimeter(t *testing.T) {
 	assertCorrectMessage(t, got, want)
 }
 
+type TableTests struct {
+	shape Shape
+	want  float64
+}
+
 func TestArea(t *testing.T) {
-	checkArea := func(t testing.TB, shape Shape, want float64) {
-		t.Helper()
-		got := shape.Area()
-		if got != want {
-			t.Errorf("got %g want %g", got, want)
-		}
+	testsArea := []TableTests{
+		{shape: Rectangle{12, 6}, want: 72},
+		{shape: Circle{10}, want: 314.1592653589793},
 	}
-	t.Run("rectangles", func(t *testing.T) {
-		rectangle := Rectangle{12, 6}
-		got := rectangle
-		want := 72.0
 
-		checkArea(t, got, want)
-	})
+	for _, tt := range testsArea {
+		got := tt.shape.Area()
+		want := tt.want
 
-	t.Run("circles", func(t *testing.T) {
-		circle := Circle{10}
-		got := circle
-		want := 314.1592653589793
-
-		checkArea(t, got, want)
-	})
+		assertCorrectMessage(t, got, want)
+	}
 }
 
 func assertCorrectMessage(t testing.TB, got, want float64) {
