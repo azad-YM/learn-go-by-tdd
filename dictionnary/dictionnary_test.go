@@ -42,6 +42,9 @@ func Test_Add(t *testing.T) {
 	})
 }
 
+// modifier la définition d'un mot
+// supprimer un mot
+
 func assertDefinition(t testing.TB, dictionary Dictionary, word, definition string) {
 	t.Helper()
 	got, err := dictionary.Search(word)
