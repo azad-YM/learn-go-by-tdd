@@ -1,32 +1,32 @@
 package romannumeral
 
 import (
+	"fmt"
 	"testing"
 )
 
 func TestRomanNumerals(t *testing.T) {
 	cases := []struct {
-		Description string
-		Number      int
-		Want        string
+		Arabic int
+		Roman  string
 	}{
-		{"1 gots roman I", 1, "I"},
-		{"2 gots roman II", 2, "II"},
-		{"3 gots roman III", 3, "III"},
-		{"4 gots roman IV", 4, "IV"},
-		{"5 gots roman V", 5, "V"},
-		{"6 gots roman VI", 6, "VI"},
-		{"9 gots roman IX", 9, "IX"},
-		{"10 gots roman X", 10, "X"},
-		{"39 gots roman XXXIX", 39, "XXXIX"},
+		{1, "I"},
+		{2, "II"},
+		{3, "III"},
+		{4, "IV"},
+		{5, "V"},
+		{6, "VI"},
+		{9, "IX"},
+		{10, "X"},
+		{39, "XXXIX"},
 	}
 
 	for _, test := range cases {
-		t.Run(test.Description, func(t *testing.T) {
-			got := ConvertToRoman(test.Number)
+		t.Run(fmt.Sprintf("%d gots roman %q", test.Arabic, test.Roman), func(t *testing.T) {
+			got := ConvertToRoman(test.Arabic)
 
-			if test.Want != got {
-				t.Errorf("%q got, %q want", got, test.Want)
+			if test.Roman != got {
+				t.Errorf("%q got, %q want", got, test.Roman)
 			}
 		})
 	}
