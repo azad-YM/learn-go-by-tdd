@@ -2,22 +2,24 @@ package romannumeral
 
 import "strings"
 
-func ConvertToRoman(arabic int) string {
-	conversionTable := []struct {
-		Value  int
-		Arabic string
-	}{
-		{10, "X"},
-		{9, "IX"},
-		{5, "V"},
-		{4, "IV"},
-		{1, "I"},
-	}
+type RomanNumeral struct {
+	Value int
+	Roman string
+}
 
+var romanNumerals = []RomanNumeral{
+	{10, "X"},
+	{9, "IX"},
+	{5, "V"},
+	{4, "IV"},
+	{1, "I"},
+}
+
+func ConvertToRoman(arabic int) string {
 	var result strings.Builder
-	for _, row := range conversionTable {
+	for _, row := range romanNumerals {
 		for arabic >= row.Value {
-			result.WriteString(row.Arabic)
+			result.WriteString(row.Roman)
 			arabic -= row.Value
 		}
 	}
