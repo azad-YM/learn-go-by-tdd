@@ -7,16 +7,10 @@ import (
 	"example.com/learn/player"
 )
 
-type InMemoryPlayerStore struct{}
-
-func (i *InMemoryPlayerStore) GetPlayerStore(name string) int {
-	return 123
-}
-
 func main() {
-	playerServer := &player.PlayerServer{
-		Store: &InMemoryPlayerStore{},
+	server := &player.PlayerServer{
+		Store: player.NewInMemoryPlayerStore(),
 	}
 
-	log.Fatal(http.ListenAndServe(":5000", playerServer))
+	log.Fatal(http.ListenAndServe(":5001", server))
 }
